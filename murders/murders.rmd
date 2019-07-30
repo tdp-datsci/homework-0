@@ -1,0 +1,38 @@
+---
+title: "United States Gun Murders"
+author: "Terry D. Peterson"
+date: "7/29/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r loading-libraries, message=FALSE}
+library(tidyverse)
+library(dslabs)
+library(ggrepel)
+data(murders)
+```
+## Loading of libraries and dataset
+
+```{r echo=TRUE, eval=FALSE}
+library(tidyverse)
+library(dslabs)
+library(ggrepel)
+data(murders)
+```
+
+## United States Gun Murders
+
+```{r code, eval=TRUE, echo=TRUE}
+murders %>% ggplot(aes(population/10^6, total, label=abb, color = region)) +
+  scale_x_log10() +
+  geom_point() +
+  geom_text_repel() +
+  xlab("Population in millions (log scale)") +
+  ylab("Total number of murders") +
+  ggtitle("United States Gun Murders")
+```
+
